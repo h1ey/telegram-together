@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" id="tc" content="#ffffff" />
+    <title>Telegram Together — Concept</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="ntf"></div>
+      <div class="pg t" id="home">
+        <div class="top hd">
+          <button class="cbtn" id="thm" aria-label="Theme" hidden></button
+          ><button class="hb hedit" id="edt">Edit</button
+          ><span class="hti"
+            >Chats<svg class="hst" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 2.6l2.9 6.1 6.7.9-4.9 4.7 1.2 6.7L12 17.7l-5.9 3.3 1.2-6.7-4.9-4.7 6.7-.9z"
+                fill="#2aabee"
+                stroke="#2aabee"
+                stroke-width="2.2"
+                stroke-linejoin="round"
+              /></svg></span
+          ><span class="hrt"
+            ><button class="hb hcirc" id="sty" aria-label="Add story">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.9"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9.2" stroke-dasharray="3.6 2.6" />
+                <path d="M12 8v8M8 12h8" />
+              </svg></button
+            ><button class="hb hcirc hnew" aria-label="New message">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                <path
+                  d="M18.4 2.6a1.9 1.9 0 0 1 2.9 2.9l-9 9a2 2 0 0 1-.9.5l-2.9.8a.5.5 0 0 1-.6-.6l.8-2.9a2 2 0 0 1 .5-.9z"
+                />
+              </svg></button
+          ></span>
+        </div>
+        <div class="srch">
+          <svg
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <circle cx="10.5" cy="10.5" r="6.5" />
+            <path d="m20 20-4.2-4.2" /></svg
+          >Search
+        </div>
+        <div id="list"></div>
+      </div>
+      <div class="pg t" id="settings" hidden>
+        <div class="top">
+          <span style="width: 60px"></span><span>Settings</span><span style="width: 60px"></span>
+        </div>
+        <div class="body2">
+          <div class="card2">
+            <div class="lbl">Appearance</div>
+            <div class="seg" id="seg">
+              <button data-v="system" class="on">System</button><button data-v="light">Light</button
+              ><button data-v="dark">Dark</button>
+            </div>
+          </div>
+          <div class="card2">
+            <div class="rw">
+              <div>Activity invitations<small>Show the friend's notification banner</small></div>
+              <button class="sw on" id="swn" aria-label="Invitations"></button>
+            </div>
+          </div>
+          <div class="card2">
+            <div class="rw">
+              <div>Reset XP and stats<small>Start fresh for a new demo</small></div>
+              <button class="pill" id="rst">Reset</button>
+            </div>
+          </div>
+          <div class="card2 note">
+            <b>About this prototype</b><br />Telegram Together is an unofficial concept. Maya, Leo and Nora
+            are fictional, opponents are simulated, and nothing here is connected to Telegram.
+          </div>
+        </div>
+      </div>
+      <div class="pg t" id="profile" hidden>
+        <div class="ptop">
+          <button class="ib" aria-label="QR code">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="3" width="7" height="7" rx="1.5" />
+              <rect x="14" y="3" width="7" height="7" rx="1.5" />
+              <rect x="3" y="14" width="7" height="7" rx="1.5" />
+              <path d="M14 14h3v3h-3zM19 14h2M14 19h2M19 19h2v2" />
+            </svg></button
+          ><button class="ib" aria-label="More">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="5" r="1.6" />
+              <circle cx="12" cy="12" r="1.6" />
+              <circle cx="12" cy="19" r="1.6" />
+            </svg>
+          </button>
+        </div>
+        <div class="pbody">
+          <div id="pav" hidden></div>
+          <img class="pavt" src="assets/avatars/me.jpg" alt="Profile photo" />
+          <div class="pname">🌊</div>
+          <div class="pstat"><span class="pbx">2</span><span>online</span></div>
+          <div class="card2 pc">
+            <div><b>🌊🐾🕳️</b><small>Bio</small></div>
+            <div><b>@headsea</b><small>Username</small></div>
+          </div>
+          <div class="ptabs">
+            <button class="on">Posts</button><button>Archived Posts</button><button>Gifts</button>
+          </div>
+          <div class="pempty">
+            <h3>No posts yet…</h3>
+            <p>Publish photos and videos to display on your profile page</p>
+          </div>
+        </div>
+        <button class="addp">
+          <svg
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+            <circle cx="12" cy="13" r="3.5" /></svg
+          >Add a post
+        </button>
+      </div>
+      <nav id="tabs">
+        <button data-t="home" class="on">
+          <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" class="nbub">
+            <path
+              d="M20 3.2c5 0 8.800 3.300 8.800 7.900 0 1.900-.7 3.600-1.800 5l.9 4.200-3.900-1.500c-1 .3-2.100.5-3.200.5-5 0-8.800-3.400-8.800-8S15 3.200 20 3.200z"
+              fill="#2d7fd1"
+            />
+            <path
+              d="M11 9.5c5.3 0 9.3 3.6 9.3 8.3S16.3 26.100 11 26.100c-1.200 0-2.300-.2-3.300-.5l-4.400 2 1.100-4.800C2.900 21.200 1.700 19.600 1.700 17.800 1.700 13.100 5.700 9.500 11 9.500z"
+              fill="#4aaaf6"
+              stroke="#244058"
+              stroke-width="1.3"
+            /></svg
+          ><span class="bdg">1</span>Chats</button
+        ><button data-t="settings">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.9"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"
+            />
+            <circle cx="12" cy="12" r="3" /></svg
+          >Settings</button
+        ><button data-t="profile"><img class="tav" src="assets/avatars/me.jpg" alt="" />Profile</button>
+      </nav>
+      <div class="pg" id="chat" hidden>
+        <header>
+          <button class="bk" id="back" aria-label="Back">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.4"
+            >
+              <path d="M15 5l-7 7 7 7" />
+            </svg>
+          </button>
+          <div class="hc">
+            <div class="av" id="hav"></div>
+            <div class="hn">Maya Hart<small id="stt">online</small></div>
+          </div>
+          <div class="hr">
+            <button class="ib" aria-label="Call">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"
+                />
+              </svg></button
+            ><button class="ib" aria-label="More">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="5" r="1.6" />
+                <circle cx="12" cy="12" r="1.6" />
+                <circle cx="12" cy="19" r="1.6" />
+              </svg>
+            </button>
+          </div>
+        </header>
+        <div id="dock" hidden></div>
+        <div id="msgs"></div>
+        <div class="bar">
+          <div class="pillin">
+            <svg
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <path d="M8.5 14.5c1 1.5 2.2 2.2 3.5 2.2s2.5-.7 3.5-2.2M9 9.5h.01M15 9.5h.01" /></svg
+            ><input id="in" placeholder="Message" enterkeyhint="send" /><button
+              class="ib tg"
+              id="tog"
+              aria-label="Together"
+            >
+              ✦</button
+            ><button class="ib" aria-label="Gift">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="8" width="18" height="4" rx="1" />
+                <path
+                  d="M5 12v8h14v-8M12 8v12M12 8C9.5 8 8 6.8 8 5.6 8 4.4 9 4 10 4c1.4 0 2 1.8 2 4zM12 8c2.5 0 4-1.2 4-2.4C16 4.4 15 4 14 4c-1.4 0-2 1.8-2 4z"
+                />
+              </svg></button
+            ><button class="ib" aria-label="Attach">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M20 11.5l-8 8a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4l7.5-7.5"
+                />
+              </svg></button
+            ><button class="ib" id="snd" aria-label="Send">
+              <svg width="26" height="26" viewBox="0 0 24 24" class="smc">
+                <rect x="9" y="2.5" width="6" height="11.5" rx="3" stroke="none" />
+                <path
+                  d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"
+                  fill="none"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                /></svg
+              ><svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="sar"
+              >
+                <path d="M4 12L20 4l-5 16-3.5-6.5z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="sh" hidden><div id="sc"></div></div>
+      <script src="js/app.js"></script>
+    </div>
+  </body>
+</html>
