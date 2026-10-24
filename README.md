@@ -8,6 +8,8 @@ One ✦ button in the message bar turns any chat into a shared activity: games o
 - **Video:** [`Telegram-Together-Demo.mp4`](Telegram-Together-Demo.mp4) (about 2 minutes, recorded from this exact code).
 - **Live page:** enable GitHub Pages (Settings → Pages → Deploy from branch → `main` / root), or simply open `index.html`.
 
+**More:** [`IMPLEMENTATION.md`](IMPLEMENTATION.md) (what is real, what is simulated, integration points, Mini App and native paths) · [`PITCH.md`](PITCH.md) (the pitch and master prompt)
+
 ## Feature status
 
 | Feature | Status |
@@ -84,8 +86,9 @@ What this means:
 npm i playwright
 npx playwright install chromium
 node smoke-test.js
+node lifecycle-test.js
 ```
-The test checks equal chess squares, the opponent's reply, backgammon dice, and that no console errors occur. It uses two test hooks, `window.__t` (chess) and `window.__bg` (backgammon), which exist only for testing. The prototype was tested in headless Chromium, not on a physical phone.
+`smoke-test.js` checks equal chess squares, the opponent's reply, backgammon dice, and that no console errors occur. It uses two test hooks, `window.__t` (chess) and `window.__bg` (backgammon), which exist only for testing. `lifecycle-test.js` opens and ends every activity twice, then checks for leaked timers, animation loops, open audio contexts and late messages. The prototype was tested in headless Chromium, not on a physical phone.
 
 ## Credits and assets
 - Film posters and portraits are **AI-generated**. `assets/avatars/me.jpg` is the author's own profile picture.
