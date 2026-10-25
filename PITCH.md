@@ -29,9 +29,9 @@ I am a fan of how Telegram feels: fast, clean and a little playful. I built a sm
 5. **It fits Telegram's business model.** Premium could unlock extra game themes and private rooms, Stars could power tips and tournaments, and creators and communities could host events in their groups.
 6. **It stays light and private.** Nothing new is stored beyond the session; the dock is dismissible; the activity is a guest, and the conversation stays the main character.
 
-**What the prototype shows (static web files, no backend).** Light and dark themes in Telegram's visual language; a profile page; Chess with a full rules engine; Backgammon with real dice; Tic-Tac-Toe; a three-question quiz with XP; a cinema picker with a movie-night vote; a cinematic intro with an original synthesised score; live reactions with a double-tap heart; and a shareable result card.
+**What the prototype shows (static web files, no backend).** Light and dark themes in Telegram's visual language; a profile page; Chess with a full rules engine; Backgammon with real dice; Tic-Tac-Toe; a three-question quiz with XP; a cinema picker with a movie-night vote; a looping film clip with an original synthesised score; live reactions with a double-tap heart; and a shareable result card.
 
-**What is simulated, to be clear.** The second participant (Maya) and all opponents are scripted. Invitations and synchronisation are simulated. The cinema shows a poster preview, not real streaming. Nothing is connected to Telegram. Posters and portraits are AI-generated.
+**What is simulated, to be clear.** The second participant (Maya) and all opponents are scripted. Invitations and synchronisation are simulated. The cinema loops a short generated clip as a stand-in for the shared film; there is no streaming. Nothing is connected to Telegram. Posters, portraits and clips are AI-generated.
 
 **What I would suggest.** A small pilot in one-to-one chats: two games plus reactions, measured by invitation acceptance rate, sessions per active chat, and chats that return within seven days. I am happy to refine, simplify or redesign any part.
 
@@ -78,7 +78,7 @@ DESIGN RULES
   legal target) are overlays and never replace the base colour of a square.
 - Dice must show their pips and the result in words ("You rolled 5 & 2").
 - Touch targets of at least 44px. Respect safe areas. Portrait first.
-- Motion is short and purposeful (under 400ms), except the cinema intro (5s).
+- Motion is short and purposeful (under 400ms).
 
 CONVERSATION QUALITY (the friend, "Maya")
 - Reacts to what is happening: captures, checks, doubles, hits, quiz results, film moments.

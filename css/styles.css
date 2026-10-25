@@ -2811,3 +2811,16 @@ body.tx * {
     transform: translate(calc(var(--sx, 0) * -1), -96px) scale(1.06);
   }
 }
+
+/* Cinema clip */
+.scr2.hasv .pv,
+.scr2.hasv .pc { display: none; }
+.scr2.hasv .iv { background: transparent; object-fit: contain; z-index: 4; }
+.scr2.hasv .vg,
+.scr2.hasv .lb,
+.scr2.hasv .ls { z-index: 5; }
+.scr2 .now { z-index: 6; }
+.scr2 .fl { z-index: 7; }
+.scr2 .bh { z-index: 8; }
+.pbtn { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border: 0; border-radius: 50%; background: rgba(0, 0, 0, 0.6); color: #fff; font-size: 26px; z-index: 9; cursor: pointer; }
+.pbtn[hidden] { display: none; }

@@ -268,13 +268,9 @@ class Chess {
     return !this.legal().length || this.in_draw();
   }
 }
-const VID = {
-  alpha: "assets/intros/alpha_intro.mp4",
-  ao: "assets/intros/ao_intro.mp4",
-  bfs: "assets/intros/bfs_intro.mp4",
-  ood: "assets/intros/ood_intro.mp4",
-  ember: "assets/intros/ember_intro.mp4",
-  wild: "assets/intros/wild_intro.mp4",
+const CLIP = {
+  ashes: { mp4: "assets/video/ashes.mp4", webm: "assets/video/ashes.webm" },
+  canyon: { mp4: "assets/video/canyon.mp4", webm: "assets/video/canyon.webm" },
 };
 const DIE = {
   1: "assets/dice/die_1.svg",
@@ -285,12 +281,8 @@ const DIE = {
   6: "assets/dice/die_6.svg",
 };
 const IMG = {
-  alpha: "assets/posters/alpha_poster.webp",
-  ao: "assets/posters/ao_poster.webp",
-  bfs: "assets/posters/bfs_poster.webp",
-  ood: "assets/posters/ood_poster.webp",
-  ember: "assets/posters/ember_poster.webp",
-  wild: "assets/posters/wild_poster.webp",
+  ashes: "assets/posters/ashes_poster.webp",
+  canyon: "assets/posters/canyon_poster.webp",
 };
 const $ = (i) => document.getElementById(i),
   pick = (a) => a[Math.floor(Math.random() * a.length)];
@@ -675,12 +667,8 @@ function store() {
   wire();
 }
 const MV = [
-  { id: "alpha", n: "Alpha", t: "Friend. Companion. Survivor." },
-  { id: "ao", n: "AO: The Last Hunter", t: "The hunt is not for food. It is to remain." },
-  { id: "bfs", n: "Before the First Sun", t: "A world before the first flame." },
-  { id: "ood", n: "Out of the Dark", t: "Some journeys begin with one spark." },
-  { id: "ember", n: "The Last Ember", t: "Carry the fire. Cross the cold." },
-  { id: "wild", n: "Wilderness of the Ancients", t: "Loyalty goes further than fear." },
+  { id: "ashes", n: "Ashes of Honor", t: "Some battles are fought not for glory, but for what remains." },
+  { id: "canyon", n: "The Lost Canyon", t: "Some places are not found, they call you." },
 ];
 const mcard = (m, i, w, s) =>
   `<div class="mi"><button class="mc ${w ? "wc" : ""} ${s ? "sel" : ""}" data-i="${i}" aria-label="${m.n}">${s ? '<span class="ck2">✓</span>' : ""}<div class="mb" style="background-image:url(${IMG[m.id]})"></div><img src="${IMG[m.id]}" alt="${m.n} poster"></button><b>${m.n}</b><small>${m.t}</small></div>`;
@@ -1896,7 +1884,7 @@ function filmP(dh, mv, me) {
     last = performance.now(),
     mute = false;
   const CM = [
-    [2, ["Okay the intro?? 😭 that camera drift over the poster is insane."]],
+    [2, ["Okay that opening shot?? 😭 The light in this scene is unreal."]],
     [
       10,
       [
@@ -1920,33 +1908,63 @@ function filmP(dh, mv, me) {
     `<div class="scr2" id="sr"><div class="mb" style="background-image:url(${u})"></div><img class="pc" src="${u}" alt="${mv.n} poster"><img class="pv ${mv.id === "list" ? "wide" : ""}" src="${u}" alt=""><div class="ls"></div><div class="dust">${Array.from({ length: 12 }, (_, i) => `<span style="left:${(i * 37) % 100}%;animation-delay:${(i % 6) * 0.5}s"></span>`).join("")}</div><div class="vg"></div><div class="lb t"></div><div class="lb b"></div><span class="now">NOW SHOWING · SIMULATED</span></div>
  <div class="room">${av("alex")}${av("maya")}<span>Watching together · 2 in the room</span></div>
  <div class="prow"><button id="pp" aria-label="Pause" disabled>⏸</button><div class="pg2"><i id="pb"></i></div><span id="tm">0:00</span><button id="mu" aria-label="Sound">🔊</button></div>
- <div class="ctl"><button data-e="🔥"><b>🔥</b><small>0</small></button><button data-e="😱"><b>😱</b><small>0</small></button><button data-e="❤️"><b>❤️</b><small>0</small></button><button data-e="👏"><b>👏</b><small>0</small></button></div><div id="st" style="margin-top:6px">Double-tap the screen for ❤️ · poster preview · sync simulated</div></div>`;
+ <div class="ctl"><button data-e="🔥"><b>🔥</b><small>0</small></button><button data-e="😱"><b>😱</b><small>0</small></button><button data-e="❤️"><b>❤️</b><small>0</small></button><button data-e="👏"><b>👏</b><small>0</small></button></div><div id="st" style="margin-top:6px">Double-tap the screen for ❤️ · clip preview · sync simulated</div></div>`;
   const sr = $("sr");
   sr.classList.add("run");
   FA = cueFilm();
-  const VS = VID[mv.id];
-  if (VS && !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) {
-    const vd = document.createElement("video");
+  let vd = null;
+  const CL = CLIP[mv.id];
+  if (CL) {
+    const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const pb = document.createElement("button");
+    pb.className = "pbtn";
+    pb.setAttribute("aria-label", "Play video");
+    pb.textContent = "▶";
+    pb.hidden = true;
+    vd = document.createElement("video");
+    vd.className = "iv";
     vd.muted = true;
     vd.defaultMuted = true;
+    vd.loop = true;
     vd.playsInline = true;
     vd.setAttribute("playsinline", "");
-    vd.setAttribute("aria-hidden", "true");
-    vd.className = "iv";
-    vd.src = VS;
-    sr.appendChild(vd);
-    const kill = () => {
-      vd.onended = vd.onerror = null;
-      vd.style.opacity = "0";
-      setTimeout(() => vd.remove(), 550);
+    vd.setAttribute("preload", "auto");
+    vd.setAttribute("aria-label", mv.n + " clip");
+    vd.poster = u;
+    [["video/mp4", CL.mp4], ["video/webm", CL.webm]].forEach(([t, src]) => {
+      const e = document.createElement("source");
+      e.type = t;
+      e.src = src;
+      vd.appendChild(e);
+    });
+    const fail = () => {
+      if (vd) vd.remove();
+      pb.remove();
+      sr.classList.remove("hasv");
     };
-    vd.onended = kill;
-    vd.onerror = () => vd.remove();
-    const pr = vd.play();
-    if (pr && pr.catch) pr.catch(() => vd.remove());
-    setTimeout(() => {
-      if (vd.isConnected) kill();
-    }, 4600);
+    vd.lastChild.addEventListener("error", fail);
+    vd.addEventListener("error", fail);
+    const go = () => {
+      const pr = vd.play();
+      if (pr && pr.then)
+        pr.then(() => (pb.hidden = true)).catch(() => (pb.hidden = false));
+    };
+    pb.onclick = go;
+    sr.classList.add("hasv");
+    sr.appendChild(vd);
+    sr.appendChild(pb);
+    if (reduce) pb.hidden = false;
+    else go();
+    const stopAudio = FA.stop;
+    FA.stop = () => {
+      stopAudio();
+      if (vd) {
+        vd.pause();
+        vd.removeAttribute("src");
+        vd.querySelectorAll("source").forEach((x) => x.remove());
+        vd.load();
+      }
+    };
   }
   setTimeout(() => {
     if (me === sess && sr.isConnected) {
@@ -1958,6 +1976,10 @@ function filmP(dh, mv, me) {
   $("pp").onclick = () => {
     on = !on;
     if (FA && FA.pause) FA.pause(!on);
+    if (vd) {
+      if (on) vd.play().catch(() => {});
+      else vd.pause();
+    }
     sr.classList.toggle("paused", !on);
     $("pp").textContent = on ? "⏸" : "▶";
     add((on ? "▶ Resumed" : "⏸ Paused") + " for both of you", "sys");

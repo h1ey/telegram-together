@@ -9,7 +9,7 @@ This document separates what the prototype **does**, what it **simulates**, and 
 | Chess, backgammon, tic-tac-toe, quiz | Rules, turn logic, results, XP | The opponent is a local bot |
 | Chat | UI, message list, voice-note player, read-receipt animation | The friend's messages are scripted and react to local events |
 | Invitation | Card, accept/decline UI | "Maya accepts" is a timer |
-| Cinema | Vote, intro clip, shared-screen UI, synthesised score, reactions | No film playback, no shared timeline |
+| Cinema | Vote, looping film clip, shared-screen UI, synthesised score, reactions | The clip plays locally; no shared timeline |
 | Presence ("2 in the room") | Label | Static |
 | Persistence | Theme only (`localStorage`) | Sessions, scores and XP are lost on reload |
 
@@ -19,14 +19,14 @@ All behaviour is in `js/app.js` (about 2,000 lines, no dependencies). Line numbe
 
 | Seam | Function (line) | Replace or extend with |
 |---|---|---|
-| Start an activity | `invite()` (1123) → `openAct()` (1160) | Send a real invitation; open the dock when the other person accepts |
-| Game registry | `registerGame()` (1153), `GAMES` | A game is `{ id, title, mount(dh, me) }` |
-| End and cleanup | `endDock()` (1110) | Close the session on the server |
-| Result card | `done()` (1751) | Post the result as a message everyone sees |
-| Opponent logic | `bot()` inside `chess` (1178), bot turns in the backgammon and `xo` (1307) modules | Apply the **remote participant's** move instead of a bot move |
-| Friend's behaviour | `mq()` (405), `mstep()` (422), `EVP`, `SC`, `OPEN` | Replaced by real messages; keep the typing and voice-note UI |
-| Cinema timeline | `filmP()` (1890), schedules `CM` (chat) and `MR` (reactions) | Drive from a shared `{ state, position, timestamp }` |
-| Audio | `scoreFilm()` (904), `cueFilm()` (1082) | Keep; it exposes `stop`, `mute` and `pause` |
+| Start an activity | `invite()` (1111) → `openAct()` (1148) | Send a real invitation; open the dock when the other person accepts |
+| Game registry | `registerGame()` (1141), `GAMES` | A game is `{ id, title, mount(dh, me) }` |
+| End and cleanup | `endDock()` (1098) | Close the session on the server |
+| Result card | `done()` (1739) | Post the result as a message everyone sees |
+| Opponent logic | `bot()` inside `chess` (1166), bot turns in the backgammon and `xo` (1295) modules | Apply the **remote participant's** move instead of a bot move |
+| Friend's behaviour | `mq()` (397), `mstep()` (414), `EVP`, `SC`, `OPEN` | Replaced by real messages; keep the typing and voice-note UI |
+| Cinema screen and timeline | `filmP()` (1878), schedules `CM` (chat) and `MR` (reactions) | Drive the video element from a shared `{ state, position, timestamp }` instead of the local clock |
+| Audio | `scoreFilm()` (892), `cueFilm()` (1070) | Keep; it exposes `stop`, `mute` and `pause` |
 
 **Lifecycle contract.** Every asynchronous callback checks the session token (`me !== sess`) before touching the UI. `endDock()` invalidates it.
 
@@ -37,7 +37,9 @@ Run `node smoke-test.js` and `node lifecycle-test.js` (see README, Tests). Resul
 - **Smoke test:** 4 of 4 checks pass (equal chess squares, opponent replies, dice shown, no errors).
 - **Lifecycle test:** after two rounds of opening and ending chess, backgammon, tic-tac-toe, quiz and cinema: 0 active intervals, 0 animation-frame callbacks per second, every `AudioContext` closed, 0 messages arriving after the sessions ended, 0 console errors.
 
-Not verified: physical phones, real Telegram, intro-clip playback on every browser, audio by ear.
+**Cinema video.** Each film has a poster and a short clip (`assets/video/<id>.mp4` and `.webm`). The player is a muted, looping `<video>` with `playsinline`; if the browser blocks autoplay or `prefers-reduced-motion` is set, a Play button appears; if both sources fail to load, the poster is shown. The test suite plays the clip, pauses and resumes it, and checks that it is removed when the session ends.
+
+Not verified: physical phones, real Telegram, clip playback on every browser, audio by ear.
 
 ## 4. What real synchronisation needs
 
@@ -107,4 +109,4 @@ Build (from the repository README): Android Studio 2025.1.4, Android NDK 27.2.12
 
 ## 6. Known limitations
 
-Web prototype only. No server, accounts, anti-cheat or persistence. Posters and portraits are AI-generated; film titles are placeholders. Not affiliated with Telegram.
+Web prototype only. No server, accounts, anti-cheat or persistence. Posters, portraits and clips are AI-generated; film titles and credits are placeholders. Not affiliated with Telegram.

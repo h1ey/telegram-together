@@ -27,6 +27,7 @@ const path = require('path');
   check('no animation-frame loops (' + s.raf + '/s)', s.raf === 0);
   check('all audio contexts closed (' + s.ac.join(',') + ')', s.ac.every(x => x === 'closed'));
   check('no messages after sessions ended (' + (n1 - n0) + ')', n1 - n0 <= 0);
+  check('no leftover video elements', await p.evaluate(() => document.querySelectorAll('video').length === 0));
   check('no console or page errors', errs.length === 0); if (errs.length) console.log(errs);
   await b.close();
 })();
