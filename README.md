@@ -5,7 +5,7 @@ One ✦ button in the message bar turns any chat into a shared activity: games o
 **Unofficial concept. Not affiliated with, or endorsed by, Telegram.** Everything in the prototype is simulated: the friend ("Maya") and every opponent are scripted, invitations and synchronisation are local, and the cinema loops a short generated clip as a stand-in for the shared film, with no streaming.
 
 ## Demo
-- **Video:** [`Telegram-Together-Demo.mp4`](Telegram-Together-Demo.mp4) (under two minutes, vertical 1080×1920, recorded from this exact code).
+- **Video:** [watch the demo](https://h1ey.github.io/telegram-together/demo.html) (under two minutes, vertical, recorded from this exact code). The file itself is [`Telegram-Together-Demo.mp4`](Telegram-Together-Demo.mp4); GitHub cannot preview files this large, so use the link or download it.
 - **Live page:** enable GitHub Pages (Settings → Pages → Deploy from branch → `main` / root), or simply open `index.html`.
 
 ## Feature status
@@ -37,6 +37,7 @@ One ✦ button in the message bar turns any chat into a shared activity: games o
 ## Structure
 ```
 index.html          markup: chat list, chat, settings, profile, bottom sheet
+demo.html           a page that plays the demo video
 css/styles.css      all styles; themes use CSS variables (dark first, light in Settings)
 js/app.js           all behaviour
 assets/avatars/     portraits (AI-generated, plus the author's own profile picture)
