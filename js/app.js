@@ -1930,7 +1930,6 @@ function filmP(dh, mv, me) {
     vd.setAttribute("playsinline", "");
     vd.setAttribute("preload", "auto");
     vd.setAttribute("aria-label", mv.n + " clip");
-    vd.poster = u;
     [["video/mp4", CL.mp4], ["video/webm", CL.webm]].forEach(([t, src]) => {
       const e = document.createElement("source");
       e.type = t;

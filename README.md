@@ -92,7 +92,7 @@ The test checks equal chess squares, the opponent's reply, backgammon dice, and 
 
 ## Credits and assets
 - Film posters, portraits and film clips are **AI-generated**. `assets/avatars/me.jpg` is the author's own profile picture.
-- The clips were generated with PixVerse. Its free-tier watermark is visible in the clips and has been left in place. Replace them with watermark-free exports before any public release.
+- The clips were generated with PixVerse, then trimmed and joined with soft dissolves into seamless loops. Its free-tier watermark is visible in the clips and has been left in place. Replace them with watermark-free exports before any public release.
 - Film titles, taglines and credits are fictional placeholders and are not affiliated with any existing film, studio or person.
 - The soundtrack is synthesised in the browser (Web Audio API). No third-party music is used.
 
