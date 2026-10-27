@@ -132,9 +132,6 @@ The test checks equal chess squares, the opponent's reply, backgammon dice, and 
 - The soundtrack is synthesised in the browser (Web Audio API). No third-party music is used.
 
 ---
----
-
----
 
 ## 👤 Author & Concept Creator
 
